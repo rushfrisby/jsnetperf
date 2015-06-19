@@ -17,50 +17,51 @@ namespace JsEnginePerformanceComparison
 
         static void Main()
         {
-            AddTest(5, @"dromaeo\dromaeo-3d-cube.js");
-            AddTest(5, @"dromaeo\dromaeo-core-eval.js");
-            AddTest(25, @"dromaeo\dromaeo-object-array.js");
-            AddTest(25, @"dromaeo\dromaeo-object-regexp.js");
-            AddTest(25, @"dromaeo\dromaeo-object-string.js");
-            AddTest(5, @"dromaeo\dromaeo-string-base64.js");
-            
-            AddTest(60, @"v8\v8-crypto.js");
-            AddTest(5, @"v8\v8-deltablue.js");
-            AddTest(60, @"v8\v8-earley-boyer.js");
-            AddTest(25, @"v8\v8-raytrace.js");
-            AddTest(5, @"v8\v8-richards.js");
-            
-            AddTest(5, @"sunspider\sunspider-3d-morph.js");
-            AddTest(5, @"sunspider\sunspider-3d-raytrace.js");
-            AddTest(5, @"sunspider\sunspider-access-binary-trees.js");
-            AddTest(5, @"sunspider\sunspider-access-fannkuch.js");
-            AddTest(5, @"sunspider\sunspider-access-nbody.js");
-            AddTest(5, @"sunspider\sunspider-access-nsieve.js");
-            AddTest(5, @"sunspider\sunspider-bitops-3bit-bits-in-byte.js");
-            AddTest(5, @"sunspider\sunspider-bitops-bits-in-byte.js");
-            AddTest(5, @"sunspider\sunspider-bitops-bitwise-and.js");
-            AddTest(5, @"sunspider\sunspider-bitops-nsieve-bits.js");
-            AddTest(10, @"sunspider\sunspider-controlflow-recursive.js");
-            AddTest(10, @"sunspider\sunspider-crypto-aes.js");
-            AddTest(5, @"sunspider\sunspider-crypto-md5.js");
-            AddTest(5, @"sunspider\sunspider-crypto-sha1.js");
-            AddTest(5, @"sunspider\sunspider-date-format-tofte.js");
-            AddTest(5, @"sunspider\sunspider-date-format-xparb.js");
-            AddTest(5, @"sunspider\sunspider-math-cordic.js");
-            AddTest(5, @"sunspider\sunspider-math-partial-sums.js");
-            AddTest(5, @"sunspider\sunspider-math-spectral-norm.js");
-            AddTest(5, @"sunspider\sunspider-regexp-dna.js");
-            AddTest(5, @"sunspider\sunspider-string-fasta.js");
-            AddTest(10, @"sunspider\sunspider-string-tagcloud.js");
-            AddTest(5, @"sunspider\sunspider-string-unpack-code.js");
-            AddTest(5, @"sunspider\sunspider-string-validate-input.js");
-            
-            AddTest(5, @"lib\d3.min.js");
-            AddTest(5, @"lib\handlebars-v3.0.3.js");
-            AddTest(5, @"lib\knockout-3.3.0.js");
-            AddTest(5, @"lib\lodash.min.js");
-            AddTest(5, @"lib\qunit-1.18.0.js");
-            AddTest(5, @"lib\underscore-min.js");
+            //AddTest(5, @"dromaeo\dromaeo-3d-cube.js");
+            //AddTest(5, @"dromaeo\dromaeo-core-eval.js");
+            //AddTest(25, @"dromaeo\dromaeo-object-array.js");
+            //AddTest(25, @"dromaeo\dromaeo-object-regexp.js");
+            //AddTest(25, @"dromaeo\dromaeo-object-string.js");
+            //AddTest(5, @"dromaeo\dromaeo-string-base64.js");
+            //
+            //AddTest(60, @"v8\v8-crypto.js");
+            //AddTest(5, @"v8\v8-deltablue.js");
+            //AddTest(60, @"v8\v8-earley-boyer.js");
+            //AddTest(25, @"v8\v8-raytrace.js");
+            //AddTest(5, @"v8\v8-richards.js");
+            //
+            //AddTest(5, @"sunspider\sunspider-3d-morph.js");
+            //AddTest(5, @"sunspider\sunspider-3d-raytrace.js");
+            //AddTest(5, @"sunspider\sunspider-access-binary-trees.js");
+            //AddTest(5, @"sunspider\sunspider-access-fannkuch.js");
+            //AddTest(5, @"sunspider\sunspider-access-nbody.js");
+            //AddTest(5, @"sunspider\sunspider-access-nsieve.js");
+            //AddTest(5, @"sunspider\sunspider-bitops-3bit-bits-in-byte.js");
+            //AddTest(5, @"sunspider\sunspider-bitops-bits-in-byte.js");
+            //AddTest(5, @"sunspider\sunspider-bitops-bitwise-and.js");
+            //AddTest(5, @"sunspider\sunspider-bitops-nsieve-bits.js");
+            //AddTest(10, @"sunspider\sunspider-controlflow-recursive.js");
+            //AddTest(10, @"sunspider\sunspider-crypto-aes.js");
+            //AddTest(5, @"sunspider\sunspider-crypto-md5.js");
+            //AddTest(5, @"sunspider\sunspider-crypto-sha1.js");
+            //AddTest(5, @"sunspider\sunspider-date-format-tofte.js");
+            //AddTest(5, @"sunspider\sunspider-date-format-xparb.js");
+            //AddTest(5, @"sunspider\sunspider-math-cordic.js");
+            //AddTest(5, @"sunspider\sunspider-math-partial-sums.js");
+            //AddTest(5, @"sunspider\sunspider-math-spectral-norm.js");
+            //AddTest(5, @"sunspider\sunspider-regexp-dna.js");
+            //AddTest(5, @"sunspider\sunspider-string-fasta.js");
+            //AddTest(10, @"sunspider\sunspider-string-tagcloud.js");
+            //AddTest(5, @"sunspider\sunspider-string-unpack-code.js");
+            //AddTest(5, @"sunspider\sunspider-string-validate-input.js");
+            //
+            //AddTest(5, @"lib\d3.min.js");
+            //AddTest(5, @"lib\handlebars-v3.0.3.js");
+            //AddTest(5, @"lib\knockout-3.3.0.js");
+            //AddTest(5, @"lib\lodash.min.js");
+            //AddTest(5, @"lib\qunit-1.18.0.js");
+            //AddTest(5, @"lib\underscore-min.js");
+            AddTest(5, @"lib\stopwatch.js");
 
             foreach (var test in Tests)
             {
@@ -165,7 +166,7 @@ namespace JsEnginePerformanceComparison
                 {
                     timeout = true;
                 }
-                catch
+                catch(Exception ex)
                 {
                     error = true;
                 }

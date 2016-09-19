@@ -7,98 +7,98 @@ namespace JsEnginePerformanceComparison
     {
         static void OriginalMain()
         {
-            var done = false;
-            var sw = new Stopwatch();
+            //var done = false;
+            //var sw = new Stopwatch();
 
-            sw.Start();
-            for (var i = 0; i < N; i++)
-            {
-                var jintEngine = new Jint.Engine();
-                jintEngine.Execute(currentScript);
-                done = jintEngine.GetValue("done").AsBoolean();
-            }
-            sw.Stop();
-            Console.WriteLine("jint: " + sw.ElapsedMilliseconds / N + " - " + done);
+            //sw.Start();
+            //for (var i = 0; i < N; i++)
+            //{
+            //    var jintEngine = new Jint.Engine();
+            //    jintEngine.Execute(currentScript);
+            //    done = jintEngine.GetValue("done").AsBoolean();
+            //}
+            //sw.Stop();
+            //Console.WriteLine("jint: " + sw.ElapsedMilliseconds / N + " - " + done);
 
-            done = false;
-            sw.Restart();
-            for (var i = 0; i < N; i++)
-            {
-                var ironjsEngine = new IronJS.Hosting.CSharp.Context();
-                ironjsEngine.Execute(currentScript);
-                done = ironjsEngine.GetGlobalAs<bool>("done");
-            }
-            sw.Stop();
-            Console.WriteLine("ironjs: " + sw.ElapsedMilliseconds / N + " - " + done);
+            //done = false;
+            //sw.Restart();
+            //for (var i = 0; i < N; i++)
+            //{
+            //    var ironjsEngine = new IronJS.Hosting.CSharp.Context();
+            //    ironjsEngine.Execute(currentScript);
+            //    done = ironjsEngine.GetGlobalAs<bool>("done");
+            //}
+            //sw.Stop();
+            //Console.WriteLine("ironjs: " + sw.ElapsedMilliseconds / N + " - " + done);
 
-            done = false;
-            sw.Restart();
-            for (var i = 0; i < N; i++)
-            {
-                using (var jsNetEngine = new Noesis.Javascript.JavascriptContext())
-                {
-                    jsNetEngine.Run(currentScript);
-                    done = (bool)jsNetEngine.GetParameter("done");
-                }
-            }
-            sw.Stop();
-            Console.WriteLine("js.net: " + sw.ElapsedMilliseconds / N + " - " + done);
+            //done = false;
+            //sw.Restart();
+            //for (var i = 0; i < N; i++)
+            //{
+            //    using (var jsNetEngine = new Noesis.Javascript.JavascriptContext())
+            //    {
+            //        jsNetEngine.Run(currentScript);
+            //        done = (bool)jsNetEngine.GetParameter("done");
+            //    }
+            //}
+            //sw.Stop();
+            //Console.WriteLine("js.net: " + sw.ElapsedMilliseconds / N + " - " + done);
 
-            done = false;
-            sw.Restart();
-            for (var i = 0; i < N; i++)
-            {
-                var jurassicEngine = new Jurassic.ScriptEngine();
-                jurassicEngine.Execute(currentScript);
-                done = jurassicEngine.GetGlobalValue<bool>("done");
-            }
-            sw.Stop();
-            Console.WriteLine("jurassic: " + sw.ElapsedMilliseconds / N + " - " + done);
+            //done = false;
+            //sw.Restart();
+            //for (var i = 0; i < N; i++)
+            //{
+            //    var jurassicEngine = new Jurassic.ScriptEngine();
+            //    jurassicEngine.Execute(currentScript);
+            //    done = jurassicEngine.GetGlobalValue<bool>("done");
+            //}
+            //sw.Stop();
+            //Console.WriteLine("jurassic: " + sw.ElapsedMilliseconds / N + " - " + done);
 
-            done = false;
-            sw.Restart();
-            for (var i = 0; i < N; i++)
-            {
-                using (var clearscriptV8 = new Microsoft.ClearScript.V8.V8ScriptEngine())
-                {
-                    clearscriptV8.Execute(currentScript);
-                    done = clearscriptV8.Script.done;
-                }
-            }
-            sw.Stop();
-            Console.WriteLine("clearscriptV8: " + sw.ElapsedMilliseconds / N + " - " + done);
-
-
-            done = false;
-            sw.Restart();
-            using (var clearscriptV8 = new Microsoft.ClearScript.V8.V8Runtime())
-            {
-                var compiled = clearscriptV8.Compile(currentScript);
-                for (var i = 0; i < N; i++)
-                {
-                    using (var engine = clearscriptV8.CreateScriptEngine())
-                    {
-                        engine.Evaluate(compiled);
-                        done = engine.Script.done;
-                    }
-                }
-            }
-            sw.Stop();
-            Console.WriteLine("clearscriptV8 compiled: " + sw.ElapsedMilliseconds / N + " - " + done);
-
-            done = false;
-            sw.Restart();
-            for (var i = 0; i < N; i++)
-            {
-                var nilcontext = new NiL.JS.Core.Context();
-                nilcontext.Eval(currentScript);
-                done = (bool)nilcontext.GetVariable("done");
-            }
-            sw.Stop();
-            Console.WriteLine("niljs: " + sw.ElapsedMilliseconds / N + " - " + done);
+            //done = false;
+            //sw.Restart();
+            //for (var i = 0; i < N; i++)
+            //{
+            //    using (var clearscriptV8 = new Microsoft.ClearScript.V8.V8ScriptEngine())
+            //    {
+            //        clearscriptV8.Execute(currentScript);
+            //        done = clearscriptV8.Script.done;
+            //    }
+            //}
+            //sw.Stop();
+            //Console.WriteLine("clearscriptV8: " + sw.ElapsedMilliseconds / N + " - " + done);
 
 
-            Console.Read();
+            //done = false;
+            //sw.Restart();
+            //using (var clearscriptV8 = new Microsoft.ClearScript.V8.V8Runtime())
+            //{
+            //    var compiled = clearscriptV8.Compile(currentScript);
+            //    for (var i = 0; i < N; i++)
+            //    {
+            //        using (var engine = clearscriptV8.CreateScriptEngine())
+            //        {
+            //            engine.Evaluate(compiled);
+            //            done = engine.Script.done;
+            //        }
+            //    }
+            //}
+            //sw.Stop();
+            //Console.WriteLine("clearscriptV8 compiled: " + sw.ElapsedMilliseconds / N + " - " + done);
+
+            //done = false;
+            //sw.Restart();
+            //for (var i = 0; i < N; i++)
+            //{
+            //    var nilcontext = new NiL.JS.Core.Context();
+            //    nilcontext.Eval(currentScript);
+            //    done = (bool)nilcontext.GetVariable("done");
+            //}
+            //sw.Stop();
+            //Console.WriteLine("niljs: " + sw.ElapsedMilliseconds / N + " - " + done);
+
+
+            //Console.Read();
         }
 
         private const string currentScript = almostNothing;

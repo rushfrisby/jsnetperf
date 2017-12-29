@@ -5,12 +5,12 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.10.11" />
-    <PackageReference Include="ClearScript.V8" Version="5.4.6" />
+    <PackageReference Include="ClearScript.V8" Version="5.5.0.1" />
     <PackageReference Include="FSharp.Core" Version="4.2.3" />
     <PackageReference Include="IronJS" Version="0.2.0.1" />
-    <PackageReference Include="Jint" Version="2.9.1" />
+    <PackageReference Include="Jint" Version="2.11.58" />
     <PackageReference Include="Jurassic" Version="2.2.1" />
-    <PackageReference Include="NiL.JS" Version="2.3.955.0" />
+    <PackageReference Include="NiL.JS" Version="2.5.1206" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Tests\**\*.js">

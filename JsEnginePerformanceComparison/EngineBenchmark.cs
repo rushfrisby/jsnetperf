@@ -16,7 +16,7 @@ namespace JsEnginePerformanceComparison
         {
             public Config()
             {
-                Add(Job.ShortRun);
+                Add(Job.ShortRun.WithUnrollFactor(4).WithInvocationCount(4));
                 Add(MemoryDiagnoser.Default);
             }
         }
@@ -91,11 +91,11 @@ namespace JsEnginePerformanceComparison
             Tests.Add(fileInfo.Name, new Test(fileInfo.Name, timeoutSeconds * 1000, content));
         }
 
-        [Params("Jint", "IronJs", "Jurassic", "ClearScript", "NilJs")]
-        public string Engine { get; set; }
-
         [ParamsSource(nameof(FileNames))]
         public string FileName { get; set; }
+
+        [Params("Jint", "IronJs", "Jurassic", "ClearScript", "NilJs")]
+        public string Engine { get; set; }
 
         public IEnumerable<string> FileNames()
         {

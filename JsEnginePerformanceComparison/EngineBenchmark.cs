@@ -27,8 +27,23 @@ namespace JsEnginePerformanceComparison
         private static readonly Dictionary<string, Test> Tests = new Dictionary<string, Test>();
         private static readonly string Testrunner = File.ReadAllText(Path.Combine(TestPath, "testrunner.js"));
 
+        private static readonly Jint.Engine jintEngine = new Jint.Engine();
+        private static readonly NiL.JS.Core.Context nilcontext = new NiL.JS.Core.Context();
+        private static readonly Microsoft.ClearScript.V8.V8ScriptEngine clearscriptV8;
+        private static readonly Jurassic.ScriptEngine jurassicEngine = new Jurassic.ScriptEngine();
+        private static readonly IronJS.Hosting.CSharp.Context ironjsEngine = new IronJS.Hosting.CSharp.Context();
+
         static EngineBenchmark()
         {
+            try
+            {
+                clearscriptV8 = new Microsoft.ClearScript.V8.V8ScriptEngine();
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine("V8ScriptEngine load failed, tests fill fail: " + ex.Message);
+            }
+
             AddTest(5, @"dromaeo\dromaeo-3d-cube.js");
             AddTest(5, @"dromaeo\dromaeo-core-eval.js");
             AddTest(25, @"dromaeo\dromaeo-object-array.js");
@@ -135,7 +150,6 @@ namespace JsEnginePerformanceComparison
         {
             void Action()
             {
-                var nilcontext = new NiL.JS.Core.Context();
                 nilcontext.Eval(test.Content);
             }
 
@@ -146,10 +160,7 @@ namespace JsEnginePerformanceComparison
         {
             void Action()
             {
-                using (var clearscriptV8 = new Microsoft.ClearScript.V8.V8ScriptEngine())
-                {
-                    clearscriptV8.Execute(test.Content);
-                }
+                clearscriptV8.Execute(test.Content);
             }
 
             Execute(test, Action);
@@ -159,7 +170,6 @@ namespace JsEnginePerformanceComparison
         {
             void Action()
             {
-                var jurassicEngine = new Jurassic.ScriptEngine();
                 jurassicEngine.Execute(test.Content);
             }
 
@@ -170,7 +180,6 @@ namespace JsEnginePerformanceComparison
         {
             void Action()
             {
-                var jintEngine = new Jint.Engine();
                 jintEngine.Execute(test.Content);
             }
 
@@ -181,7 +190,6 @@ namespace JsEnginePerformanceComparison
         {
             void Action()
             {
-                var ironjsEngine = new IronJS.Hosting.CSharp.Context();
                 ironjsEngine.Execute(test.Content);
             }
 

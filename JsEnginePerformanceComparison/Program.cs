@@ -1,4 +1,5 @@
-﻿using BenchmarkDotNet.Running;
+﻿using System.Linq;
+using BenchmarkDotNet.Running;
 
 namespace JsEnginePerformanceComparison
 {
@@ -6,7 +7,14 @@ namespace JsEnginePerformanceComparison
     {
         public static void Main(string[] args)
         {
-            BenchmarkRunner.Run<EngineBenchmark>();
+            var benchmarkSwitcher = BenchmarkSwitcher.FromAssembly(typeof(EngineBenchmark).Assembly);
+            if (args != null && args.Any(x => x.IndexOf("all") > -1))
+            {
+                benchmarkSwitcher.RunAll();
+                return;
+            }
+
+            benchmarkSwitcher.Run(args);
         }
     }
 }

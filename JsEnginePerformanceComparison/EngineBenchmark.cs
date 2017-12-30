@@ -10,7 +10,7 @@ using BenchmarkDotNet.Jobs;
 namespace JsEnginePerformanceComparison
 {
     [Config(typeof(Config))]
-    public class EngineBenchmark
+    public abstract class EngineBenchmark
     {
         private class Config : ManualConfig
         {
@@ -27,23 +27,8 @@ namespace JsEnginePerformanceComparison
         private static readonly Dictionary<string, Test> Tests = new Dictionary<string, Test>();
         private static readonly string Testrunner = File.ReadAllText(Path.Combine(TestPath, "testrunner.js"));
 
-        private static readonly Jint.Engine jintEngine = new Jint.Engine();
-        private static readonly NiL.JS.Core.Context nilcontext = new NiL.JS.Core.Context();
-        private static readonly Microsoft.ClearScript.V8.V8ScriptEngine clearscriptV8;
-        private static readonly Jurassic.ScriptEngine jurassicEngine = new Jurassic.ScriptEngine();
-        private static readonly IronJS.Hosting.CSharp.Context ironjsEngine = new IronJS.Hosting.CSharp.Context();
-
         static EngineBenchmark()
         {
-            try
-            {
-                clearscriptV8 = new Microsoft.ClearScript.V8.V8ScriptEngine();
-            }
-            catch (Exception ex)
-            {
-                Console.Error.WriteLine("V8ScriptEngine load failed, tests fill fail: " + ex.Message);
-            }
-
             AddTest(5, @"dromaeo\dromaeo-3d-cube.js");
             AddTest(5, @"dromaeo\dromaeo-core-eval.js");
             AddTest(25, @"dromaeo\dromaeo-object-array.js");
@@ -109,9 +94,6 @@ namespace JsEnginePerformanceComparison
         [ParamsSource(nameof(FileNames))]
         public string FileName { get; set; }
 
-        [Params("Jint", "IronJs", "Jurassic", "ClearScript", "NilJs")]
-        public string Engine { get; set; }
-
         public IEnumerable<string> FileNames()
         {
             foreach (var entry in Tests)
@@ -120,96 +102,24 @@ namespace JsEnginePerformanceComparison
             }
         }
 
+        protected abstract void RunScript(string script);
+
         [Benchmark]
-        public void Execute()
+        public void Run()
         {
             var test = Tests[FileName];
-            switch (Engine)
-            {
-                case "Jint":
-                    ExecuteWithJint(test);
-                    break;
-                case "IronJs":
-                    ExecuteWithIronJs(test);
-                    break;
-                case "Jurassic":
-                    ExecuteWithJurrasic(test);
-                    break;
-                case "ClearScript":
-                    ExecuteWithClearScript(test);
-                    break;
-                case "NilJs":
-                    ExecuteWithNilJs(test);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            Run(test);
         }
 
-        private static void ExecuteWithNilJs(Test test)
+        private void Run(Test test)
         {
-            void Action()
-            {
-                nilcontext.Eval(test.Content);
-            }
-
-            Execute(test, Action);
-        }
-
-        private static void ExecuteWithClearScript(Test test)
-        {
-            void Action()
-            {
-                clearscriptV8.Execute(test.Content);
-            }
-
-            Execute(test, Action);
-        }
-
-        private static void ExecuteWithJurrasic(Test test)
-        {
-            void Action()
-            {
-                jurassicEngine.Execute(test.Content);
-            }
-
-            Execute(test, Action);
-        }
-
-        private static void ExecuteWithJint(Test test)
-        {
-            void Action()
-            {
-                jintEngine.Execute(test.Content);
-            }
-
-            Execute(test, Action);
-        }
-
-        private static void ExecuteWithIronJs(Test test)
-        {
-            void Action()
-            {
-                ironjsEngine.Execute(test.Content);
-            }
-
-            Execute(test, Action);
-        }
-
-        private static void Execute(Test test, Action action)
-        {
-            if (action == null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
-
             Exception error = null;
             var slim = new ManualResetEventSlim();
             var thread = new Thread(() =>
             {
                 try
                 {
-                    action();
+                    RunScript(test.Content);
                 }
                 catch (Exception ex)
                 {

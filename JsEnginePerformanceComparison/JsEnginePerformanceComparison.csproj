@@ -4,13 +4,13 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.10.11" />
-    <PackageReference Include="ClearScript.V8" Version="5.5.0.1" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.11.0" />
+    <PackageReference Include="ClearScript.V8" Version="5.5.2" />
     <PackageReference Include="FSharp.Core" Version="4.2.3" />
     <PackageReference Include="IronJS" Version="0.2.0.1" />
-    <PackageReference Include="Jint" Version="3.0.0-beta-1101" />
-    <PackageReference Include="Jurassic" Version="2.2.1" />
-    <PackageReference Include="NiL.JS" Version="2.5.1206" />
+    <PackageReference Include="Jint" Version="3.0.0-beta-1249" />
+    <PackageReference Include="Jurassic" Version="2.2.2" />
+    <PackageReference Include="NiL.JS" Version="2.5.1275" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Tests\**\*.js">

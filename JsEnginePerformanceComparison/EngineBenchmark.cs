@@ -3,24 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Configs;
-using BenchmarkDotNet.Diagnosers;
-using BenchmarkDotNet.Jobs;
 
 namespace JsEnginePerformanceComparison
 {
-    [Config(typeof(Config))]
+    [MemoryDiagnoser]
     public abstract class EngineBenchmark
     {
-        private class Config : ManualConfig
-        {
-            public Config()
-            {
-                Add(Job.ShortRun.WithUnrollFactor(4).WithInvocationCount(4));
-                Add(MemoryDiagnoser.Default);
-            }
-        }
-
         private const int StackSizeInBytes = 10000000;
         private const string TestPath = "Tests";
 

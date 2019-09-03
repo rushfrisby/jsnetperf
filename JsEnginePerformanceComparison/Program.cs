@@ -8,13 +8,14 @@ namespace JsEnginePerformanceComparison
         public static void Main(string[] args)
         {
             var benchmarkSwitcher = BenchmarkSwitcher.FromAssembly(typeof(EngineBenchmark).Assembly);
-            if (args != null && args.Any(x => x.IndexOf("all") > -1))
+            if (args.Any(x => x == "--all"))
             {
-                benchmarkSwitcher.RunAll();
-                return;
+                benchmarkSwitcher.RunAllJoined();
             }
-
-            benchmarkSwitcher.Run(args);
+            else
+            {
+                benchmarkSwitcher.Run();
+            }
         }
     }
 }

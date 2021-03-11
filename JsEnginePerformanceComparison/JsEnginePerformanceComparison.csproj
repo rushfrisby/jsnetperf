@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net472</TargetFramework>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.11.0" />
-    <PackageReference Include="ClearScript.V8" Version="5.5.2" />
-    <PackageReference Include="FSharp.Core" Version="4.2.3" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.12.1" />
+    <PackageReference Include="Microsoft.ClearScript" Version="7.1.1" />
+    <PackageReference Include="FSharp.Core" Version="4.7.0" />
     <PackageReference Include="IronJS" Version="0.2.0.1" />
-    <PackageReference Include="Jint" Version="3.0.0-beta-1249" />
-    <PackageReference Include="Jurassic" Version="2.2.2" />
-    <PackageReference Include="NiL.JS" Version="2.5.1275" />
+    <PackageReference Include="Jint" Version="3.0.0-beta-2031" />
+    <PackageReference Include="Jurassic" Version="3.1.0" />
+    <PackageReference Include="NiL.JS" Version="2.5.1475" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Tests\**\*.js">
